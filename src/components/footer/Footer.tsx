@@ -37,12 +37,12 @@ export const Footer = () => {
           <HoverableIcon
             iconUrl={telegram}
             hoveredIconUrl={telegramHovered}
-            link="https://t.me/+YDnoBue1Dz81ZTMy"
+            link="https://t.me/leah131415"
           />
           <HoverableIcon
             iconUrl={github}
             hoveredIconUrl={githubHovered}
-            link="https://github.com/ton-blockchain/minter"
+            link="https://github.com/leafjava/Skills_Bay"
           />
         </SocialsContent>
       </SocialsWrapper>

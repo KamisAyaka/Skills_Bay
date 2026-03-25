@@ -38,7 +38,7 @@ const HeaderMenu: React.FC<MenuProps> = (props) => {
       </div>
       <IconButton
         sx={{ padding: 0, ml: 1.5 }}
-        href="https://github.com/ton-blockchain/minter"
+        href="https://github.com/leafjava/Skills_Bay"
         target="_blank">
         <StyledGithubIcon width={20} height={20} src={githubIcon} />
         <HeaderTypography variant="h5">GitHub</HeaderTypography>
