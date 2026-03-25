@@ -10,7 +10,7 @@ const APP_GRID = 1156;
 
 const LOCAL_STORAGE_PROVIDER = "wallet_provider";
 
-const APP_DISPLAY_NAME = "TON MINTER";
+const APP_DISPLAY_NAME = "SkillBay";
 
 const JETTON_DEPLOYER_CONTRACTS_GITHUB = "https://github.com/leafjava/Skills_Bay";
 
