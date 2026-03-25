@@ -66,12 +66,14 @@ const getSkillFromUrl = (): SkillInfo | null => {
   return skills[startapp] || null;
 };
 
-// 生成激活码：格式为 SKILL_ID:TIMESTAMP:RANDOM，然后 Base64 编码
+// 生成激活码：根据技能 ID 返回固定格式的激活码
 const generateActivationCode = (skillId: string): string => {
-  const timestamp = Date.now();
-  const random = Math.random().toString(36).substring(2, 8);
-  const rawCode = `${skillId}:${timestamp}:${random}`;
-  return Buffer.from(rawCode).toString("base64");
+  const activationCodes: Record<string, string> = {
+    skill_news_001: "NEWS2026",
+    skill_weather_002: "WEATHER2026",
+    skill_tech_003: "TECH2026",
+  };
+  return activationCodes[skillId] || "UNKNOWN2026";
 };
 
 // 复制到剪贴板
