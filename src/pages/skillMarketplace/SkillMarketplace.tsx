@@ -45,28 +45,28 @@ interface Skill {
 const skills: Skill[] = [
   {
     id: "skill_news_001",
-    name: "📰 全球每日新闻 Top 10",
+    name: "📰 Daily News Top 10",
     icon: "📰",
     description:
-      "每日抓取路透社、美联社等主流媒体的头条，利用 AI 进行去重、翻译并提炼核心摘要。强调信息降噪，用户不需要在几十个频道里刷消息，只需一键获得全球局势。",
+      "Scrapes headlines from Reuters, AP, and other mainstream media. AI deduplicates, translates, and extracts core summaries. Emphasizes information noise reduction—users don't need to scroll through dozens of channels, just get the global situation with one click.",
     command: "/news",
     price: "0.01 TON",
   },
   {
     id: "skill_weather_002",
-    name: "🌤️ 智能天气管家",
+    name: "🌤️ Smart Weather Assistant",
     icon: "🌤️",
     description:
-      "接入高精度气象 API（如 OpenWeather），预测未来 15 天。AI 会自动判断降水概率，并给出具体的带伞建议。强调决策辅助，它不是冷冰冰的数据，而是人性化的生活助理。",
-    command: "/weather 北京",
+      "Integrates high-precision weather APIs (like OpenWeather) to forecast the next 15 days. AI automatically judges precipitation probability and gives specific umbrella recommendations. Emphasizes decision support—it's not cold data, but a humanized life assistant.",
+    command: "/weather Beijing",
     price: "0.01 TON",
   },
   {
     id: "skill_tech_003",
-    name: "🔥 极客技术热点",
+    name: "🔥 Tech Trends Weekly",
     icon: "🔥",
     description:
-      "扫描 GitHub Trending、Hacker News 以及顶级科技大厂（如 OpenAI, Google）的博客，总结出当前最火的 10 个技术点。强调专业深度，面向开发者和极客，解决技术焦虑。",
+      "Scans GitHub Trending, Hacker News, and blogs from top tech companies (like OpenAI, Google) to summarize the 10 hottest tech topics. Emphasizes professional depth, targeting developers and geeks to solve tech anxiety.",
     command: "/tech",
     price: "0.01 TON",
   },
@@ -85,12 +85,12 @@ export const SkillMarketplace = () => {
         <PageWrapper>
           <Box textAlign="center" mb={6}>
             <Typography variant="h3" gutterBottom fontWeight={700}>
-              SkillBay - AI 技能市场
+              SkillBay - AI Skills Marketplace
             </Typography>
             <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 800, mx: "auto" }}>
-              在 Telegram 内发现、购买并立即使用 AI 技能
+              Discover, purchase and use AI skills in Telegram
               <br />
-              基于 TON 区块链的去中心化支付
+              Powered by TON blockchain payments
             </Typography>
           </Box>
 
@@ -115,13 +115,13 @@ export const SkillMarketplace = () => {
                         fontFamily: "monospace",
                       }}>
                       <Typography variant="body2" color="text.secondary">
-                        使用命令:
+                        Command:
                       </Typography>
                       <Typography variant="body1" fontWeight={600}>
                         {skill.command}
                       </Typography>
                     </Box>
-                    <PriceTag>价格: {skill.price}</PriceTag>
+                    <PriceTag>Price: {skill.price}</PriceTag>
                     <Button
                       variant="contained"
                       color="primary"
@@ -129,7 +129,7 @@ export const SkillMarketplace = () => {
                       fullWidth
                       sx={{ mt: 2 }}
                       onClick={() => handlePurchase(skill.id)}>
-                      立即购买
+                      Purchase Now
                     </Button>
                   </CardContent>
                 </StyledCard>
@@ -139,22 +139,22 @@ export const SkillMarketplace = () => {
 
           <Box mt={6} p={3} sx={{ bgcolor: "#f9f9f9", borderRadius: 2 }}>
             <Typography variant="h6" gutterBottom fontWeight={600}>
-              💡 如何使用
+              💡 How to Use
             </Typography>
             <Typography variant="body2" color="text.secondary" component="div">
               <ol style={{ paddingLeft: 20 }}>
-                <li>选择您感兴趣的 AI 技能</li>
-                <li>点击"立即购买"并连接 TON 钱包</li>
-                <li>完成 0.01 TON 的支付</li>
-                <li>获得激活码（如 NEWS2026、WEATHER2026、TECH2026）</li>
-                <li>在 Telegram Bot 中使用对应命令即可调用技能</li>
+                <li>Choose an AI skill you're interested in</li>
+                <li>Click "Purchase Now" and connect your TON wallet</li>
+                <li>Complete the 0.01 TON payment</li>
+                <li>Receive activation code (e.g., NEWS2026, WEATHER2026, TECH2026)</li>
+                <li>Use the corresponding command in Telegram Bot to activate the skill</li>
               </ol>
             </Typography>
           </Box>
 
           <Box mt={4} textAlign="center">
             <Typography variant="body2" color="text.secondary">
-              支付网络: Testnet | 合约地址: EQAPgryA...2my7he
+              Network: Testnet | Contract: EQAPgryA...2my7he
             </Typography>
           </Box>
         </PageWrapper>

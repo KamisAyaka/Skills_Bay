@@ -45,21 +45,21 @@ const getSkillFromUrl = (): SkillInfo | null => {
   const skills: Record<string, SkillInfo> = {
     skill_news_001: {
       id: "skill_news_001",
-      name: "全球每日新闻 Top 10",
+      name: "Daily News Top 10",
       description:
-        "每日抓取路透社、美联社等主流媒体的头条，利用 AI 进行去重、翻译并提炼核心摘要。强调信息降噪，用户不需要在几十个频道里刷消息，只需一键获得全球局势。",
+        "Scrapes headlines from Reuters, AP, and other mainstream media. AI deduplicates, translates, and extracts core summaries. Emphasizes information noise reduction—users don't need to scroll through dozens of channels.",
     },
     skill_weather_002: {
       id: "skill_weather_002",
-      name: "智能天气管家",
+      name: "Smart Weather Assistant",
       description:
-        "接入高精度气象 API（如 OpenWeather），预测未来 15 天。AI 会自动判断降水概率，并给出具体的带伞建议。强调决策辅助，它不是冷冰冰的数据，而是人性化的生活助理。",
+        "Integrates high-precision weather APIs (like OpenWeather) to forecast the next 15 days. AI automatically judges precipitation probability and gives specific umbrella recommendations. Emphasizes decision support.",
     },
     skill_tech_003: {
       id: "skill_tech_003",
-      name: "极客技术热点",
+      name: "Tech Trends Weekly",
       description:
-        "扫描 GitHub Trending、Hacker News 以及顶级科技大厂（如 OpenAI, Google）的博客，总结出当前最火的 10 个技术点。强调专业深度，面向开发者和极客，解决技术焦虑。",
+        "Scans GitHub Trending, Hacker News, and blogs from top tech companies (like OpenAI, Google) to summarize the 10 hottest tech topics. Emphasizes professional depth for developers and geeks.",
     },
   };
 
@@ -106,7 +106,7 @@ export const SkillPayment = () => {
     setSkill(skillInfo);
 
     if (!skillInfo) {
-      showNotification("未找到技能信息", "error");
+      showNotification("Skill information not found", "error");
     }
 
     if ((window as any).Telegram?.WebApp) {
@@ -117,12 +117,12 @@ export const SkillPayment = () => {
 
   const handlePayment = async () => {
     if (!userAddress) {
-      showNotification("请先连接钱包", "warning");
+      showNotification("Please connect wallet first", "warning");
       return;
     }
 
     if (!skill) {
-      showNotification("技能信息错误", "error");
+      showNotification("Skill information error", "error");
       return;
     }
 
@@ -147,7 +147,7 @@ export const SkillPayment = () => {
       setActivationCode(code);
 
       setPaymentSuccess(true);
-      showNotification(`支付成功！已解锁技能: ${skill.name}`, "success");
+      showNotification(`Payment successful! Skill unlocked: ${skill.name}`, "success");
 
       if ((window as any).Telegram?.WebApp) {
         (window as any).Telegram.WebApp.sendData(
@@ -164,8 +164,8 @@ export const SkillPayment = () => {
         }, 5000);
       }
     } catch (error) {
-      console.error("支付失败:", error);
-      showNotification(`支付失败: ${error instanceof Error ? error.message : "未知错误"}`, "error");
+      console.error("Payment failed:", error);
+      showNotification(`Payment failed: ${error instanceof Error ? error.message : "Unknown error"}`, "error");
     } finally {
       setLoading(false);
     }
@@ -175,7 +175,7 @@ export const SkillPayment = () => {
     return (
       <PageWrapper>
         <Typography variant="h5" gutterBottom>
-          加载中...
+          Loading...
         </Typography>
       </PageWrapper>
     );
@@ -184,7 +184,7 @@ export const SkillPayment = () => {
   return (
     <PageWrapper>
       <Typography variant="h4" gutterBottom align="center">
-        技能支付
+        Skill Payment
       </Typography>
 
       <StyledCard>
@@ -196,7 +196,7 @@ export const SkillPayment = () => {
             {skill.description}
           </Typography>
           <Typography variant="body1" color="primary">
-            价格: {PAYMENT_AMOUNT} TON
+            Price: {PAYMENT_AMOUNT} TON
           </Typography>
         </CardContent>
       </StyledCard>
@@ -204,13 +204,13 @@ export const SkillPayment = () => {
       <StyledCard>
         <CardContent>
           <Typography variant="subtitle2" gutterBottom>
-            支付信息
+            Payment Information
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            合约地址: {PAYMENT_CONTRACT.slice(0, 8)}...{PAYMENT_CONTRACT.slice(-6)}
+            Contract: {PAYMENT_CONTRACT.slice(0, 8)}...{PAYMENT_CONTRACT.slice(-6)}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            网络: Testnet
+            Network: Testnet
           </Typography>
         </CardContent>
       </StyledCard>
@@ -218,28 +218,28 @@ export const SkillPayment = () => {
       {!userAddress ? (
         <Box textAlign="center" mt={3}>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            请先连接 TON 钱包
+            Please connect your TON wallet
           </Typography>
           <Button
             variant="contained"
             color="primary"
             size="large"
             onClick={() => tonConnectUI.openModal()}>
-            连接钱包
+            Connect Wallet
           </Button>
         </Box>
       ) : paymentSuccess ? (
         <Box textAlign="center" mt={3}>
           <Typography variant="h6" color="success.main" gutterBottom>
-            ✅ 支付成功！
+            ✅ Payment Successful!
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            您已成功解锁技能: {skill.name}
+            You have successfully unlocked: {skill.name}
           </Typography>
 
           <Box mt={3} mb={2}>
             <Typography variant="subtitle2" gutterBottom>
-              激活码（备用）
+              Activation Code (Backup)
             </Typography>
             <Box display="flex" alignItems="center" gap={1}>
               <TextField
@@ -255,18 +255,18 @@ export const SkillPayment = () => {
                 color="primary"
                 onClick={() => {
                   copyToClipboard(activationCode);
-                  showNotification("激活码已复制", "success");
+                  showNotification("Activation code copied", "success");
                 }}>
                 <ContentCopyIcon />
               </IconButton>
             </Box>
             <Typography variant="caption" color="text.secondary" display="block" mt={1}>
-              如果 Bot 未自动激活，请在聊天窗口输入此激活码
+              If the Bot doesn't auto-activate, enter this code in the chat
             </Typography>
           </Box>
 
           <Typography variant="body2" color="text.secondary">
-            正在返回 Bot...
+            Returning to Bot...
           </Typography>
         </Box>
       ) : (
@@ -279,11 +279,11 @@ export const SkillPayment = () => {
             onClick={handlePayment}
             disabled={loading}
             startIcon={loading ? <CircularProgress size={20} /> : null}>
-            {loading ? "支付中..." : `支付 ${PAYMENT_AMOUNT} TON`}
+            {loading ? "Processing..." : `Pay ${PAYMENT_AMOUNT} TON`}
           </Button>
 
           <Typography variant="caption" color="text.secondary" display="block" mt={2}>
-            钱包地址: {userAddress.slice(0, 8)}...{userAddress.slice(-6)}
+            Wallet: {userAddress.slice(0, 8)}...{userAddress.slice(-6)}
           </Typography>
         </Box>
       )}
