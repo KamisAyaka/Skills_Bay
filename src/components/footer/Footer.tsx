@@ -15,6 +15,8 @@ import {
 } from "./styled";
 import telegram from "assets/icons/telegram.svg";
 import telegramHovered from "assets/icons/telegram-hover.svg";
+import twitter from "assets/icons/twitter.svg";
+import twitterHovered from "assets/icons/twitter-hover.svg";
 import github from "assets/icons/github.svg";
 import orbsLogo from "assets/icons/orbs.svg";
 import githubHovered from "assets/icons/github-hover.svg";
@@ -38,6 +40,11 @@ export const Footer = () => {
             iconUrl={telegram}
             hoveredIconUrl={telegramHovered}
             link="https://t.me/leah131415"
+          />
+          <HoverableIcon
+            iconUrl={twitter}
+            hoveredIconUrl={twitterHovered}
+            link="https://x.com/lnln719198"
           />
           <HoverableIcon
             iconUrl={github}
