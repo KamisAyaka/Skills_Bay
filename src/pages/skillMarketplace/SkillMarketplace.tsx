@@ -140,7 +140,10 @@ export const SkillMarketplace = () => {
             <Typography
               variant="h6"
               sx={{
-                color: "#FF6BB5",
+                background: "linear-gradient(90deg, #D4A5F5 0%, #F78DC7 50%, #F78DC7 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
                 maxWidth: 800,
                 mx: "auto",
                 lineHeight: 1.8,
