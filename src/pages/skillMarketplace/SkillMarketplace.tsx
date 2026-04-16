@@ -26,7 +26,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const CardHeader = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, #A3C2EE 0%, #5E90E3 100%)",
+  background: "linear-gradient(135deg, #D4A5F5 0%, #F78DC7 100%)",
   padding: theme.spacing(3),
   borderRadius: "16px 16px 0 0",
   color: "#FFFFFF",
@@ -39,7 +39,7 @@ const SkillIcon = styled(Box)({
 });
 
 const PriceTag = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, #A3C2EE 0%, #5E90E3 100%)",
+  background: "linear-gradient(135deg, #D4A5F5 0%, #F78DC7 100%)",
   color: "#FFFFFF",
   fontWeight: 700,
   fontSize: "18px",
@@ -50,18 +50,18 @@ const PriceTag = styled(Box)(({ theme }) => ({
 }));
 
 const GradientButton = styled(Button)(({ theme }) => ({
-  background: "linear-gradient(135deg, #3C84F6 0%, #6999E9 100%)",
+  background: "linear-gradient(135deg, #D4A5F5 0%, #F78DC7 100%)",
   color: "#FFFFFF",
   fontWeight: 600,
   padding: theme.spacing(1.5, 3),
   borderRadius: 12,
   textTransform: "none",
   fontSize: "16px",
-  boxShadow: "0px 4px 12px rgba(60, 132, 246, 0.25)",
+  boxShadow: "0px 4px 12px rgba(247, 141, 199, 0.25)",
   transition: "all 0.3s ease",
   "&:hover": {
-    background: "linear-gradient(135deg, #6999E9 0%, #3C84F6 100%)",
-    boxShadow: "0px 6px 20px rgba(60, 132, 246, 0.35)",
+    background: "linear-gradient(135deg, #F78DC7 0%, #D4A5F5 100%)",
+    boxShadow: "0px 6px 20px rgba(247, 141, 199, 0.35)",
     transform: "translateY(-2px)",
   },
 }));
@@ -129,7 +129,7 @@ export const SkillMarketplace = () => {
               gutterBottom
               fontWeight={700}
               sx={{
-                background: "linear-gradient(90deg, #B565D8 0%, #E91E8C 50%, #E91E8C 100%)",
+                background: "linear-gradient(90deg, #D4A5F5 0%, #F78DC7 50%, #F78DC7 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
