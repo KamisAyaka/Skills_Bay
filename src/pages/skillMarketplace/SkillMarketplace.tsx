@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Screen, ScreenContent } from "components/Screen";
 
 const PageWrapper = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(4),
+  padding: theme.spacing(6, 4),
   maxWidth: 1200,
   margin: "0 auto",
 }));
@@ -13,24 +13,64 @@ const StyledCard = styled(Card)(({ theme }) => ({
   height: "100%",
   display: "flex",
   flexDirection: "column",
-  transition: "transform 0.2s, box-shadow 0.2s",
+  background: "#FFFFFF",
+  borderRadius: 16,
+  boxShadow: "0px 8px 24px rgba(60, 132, 246, 0.08)",
+  border: "1px solid rgba(232, 232, 232, 0.6)",
+  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
   "&:hover": {
-    transform: "translateY(-4px)",
-    boxShadow: theme.shadows[8],
+    transform: "translateY(-8px)",
+    boxShadow: "0px 16px 40px rgba(60, 132, 246, 0.16)",
+    borderColor: "rgba(60, 132, 246, 0.3)",
   },
 }));
 
+const CardHeader = styled(Box)(({ theme }) => ({
+  background: "linear-gradient(135deg, #6999E9 0%, #5E90E3 100%)",
+  padding: theme.spacing(3),
+  borderRadius: "16px 16px 0 0",
+  color: "#FFFFFF",
+}));
+
 const SkillIcon = styled(Box)({
-  fontSize: "48px",
-  marginBottom: "16px",
+  fontSize: "56px",
+  marginBottom: "8px",
+  textAlign: "center",
 });
 
-const PriceTag = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
+const PriceTag = styled(Box)(({ theme }) => ({
+  background: "linear-gradient(135deg, #A3C2EE 0%, #5E90E3 100%)",
+  color: "#FFFFFF",
   fontWeight: 700,
-  fontSize: "20px",
+  fontSize: "18px",
+  padding: theme.spacing(2),
+  borderRadius: 12,
+  textAlign: "center",
   marginTop: "auto",
-  paddingTop: theme.spacing(2),
+}));
+
+const GradientButton = styled(Button)(({ theme }) => ({
+  background: "linear-gradient(135deg, #3C84F6 0%, #6999E9 100%)",
+  color: "#FFFFFF",
+  fontWeight: 600,
+  padding: theme.spacing(1.5, 3),
+  borderRadius: 12,
+  textTransform: "none",
+  fontSize: "16px",
+  boxShadow: "0px 4px 12px rgba(60, 132, 246, 0.25)",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    background: "linear-gradient(135deg, #6999E9 0%, #3C84F6 100%)",
+    boxShadow: "0px 6px 20px rgba(60, 132, 246, 0.35)",
+    transform: "translateY(-2px)",
+  },
+}));
+
+const InfoBox = styled(Box)(({ theme }) => ({
+  background: "rgba(161, 222, 254, 0.08)",
+  padding: theme.spacing(4),
+  borderRadius: 16,
+  border: "1px solid rgba(161, 222, 254, 0.3)",
 }));
 
 interface Skill {
@@ -45,28 +85,28 @@ interface Skill {
 const skills: Skill[] = [
   {
     id: "skill_news_001",
-    name: "📰 Daily News Top 10",
+    name: "Daily News Top 10",
     icon: "📰",
     description:
-      "Scrapes headlines from Reuters, AP, and other mainstream media. AI deduplicates, translates, and extracts core summaries. Emphasizes information noise reduction—users don't need to scroll through dozens of channels, just get the global situation with one click.",
+      "Scrapes headlines from Reuters, AP, and other mainstream media. AI deduplicates, translates, and extracts core summaries. Emphasizes information noise reduction—users don't need to scroll through dozens of channels.",
     command: "/news",
     price: "0.01 TON",
   },
   {
     id: "skill_weather_002",
-    name: "🌤️ Smart Weather Assistant",
+    name: "Smart Weather Assistant",
     icon: "🌤️",
     description:
-      "Integrates high-precision weather APIs (like OpenWeather) to forecast the next 15 days. AI automatically judges precipitation probability and gives specific umbrella recommendations. Emphasizes decision support—it's not cold data, but a humanized life assistant.",
+      "Integrates high-precision weather APIs to forecast the next 15 days. AI automatically judges precipitation probability and gives specific umbrella recommendations. Emphasizes decision support.",
     command: "/weather Beijing",
     price: "0.01 TON",
   },
   {
     id: "skill_tech_003",
-    name: "🔥 Tech Trends Weekly",
+    name: "Tech Trends Weekly",
     icon: "🔥",
     description:
-      "Scans GitHub Trending, Hacker News, and blogs from top tech companies (like OpenAI, Google) to summarize the 10 hottest tech topics. Emphasizes professional depth, targeting developers and geeks to solve tech anxiety.",
+      "Scans GitHub Trending, Hacker News, and blogs from top tech companies to summarize the 10 hottest tech topics. Emphasizes professional depth for developers and geeks.",
     command: "/tech",
     price: "0.01 TON",
   },
@@ -83,77 +123,118 @@ export const SkillMarketplace = () => {
     <Screen>
       <ScreenContent removeBackground>
         <PageWrapper>
-          <Box textAlign="center" mb={6}>
-            <Typography variant="h3" gutterBottom fontWeight={700}>
+          <Box textAlign="center" mb={8}>
+            <Typography
+              variant="h2"
+              gutterBottom
+              fontWeight={700}
+              sx={{
+                background: "linear-gradient(135deg, #3C84F6 0%, #6999E9 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                mb: 2,
+              }}>
               SkillBay - AI Skills Marketplace
             </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 800, mx: "auto" }}>
+            <Typography
+              variant="h6"
+              color="text.secondary"
+              sx={{
+                maxWidth: 800,
+                mx: "auto",
+                lineHeight: 1.8,
+                fontWeight: 400,
+              }}>
               Discover, purchase and use AI skills in Telegram
               <br />
               Powered by TON blockchain payments
             </Typography>
           </Box>
 
-          <Grid container spacing={3}>
+          <Grid container spacing={4}>
             {skills.map((skill) => (
               <Grid item xs={12} md={4} key={skill.id}>
                 <StyledCard>
-                  <CardContent sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                  <CardHeader>
                     <SkillIcon>{skill.icon}</SkillIcon>
-                    <Typography variant="h5" gutterBottom fontWeight={600}>
+                    <Typography variant="h5" fontWeight={700} textAlign="center">
                       {skill.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" paragraph>
+                  </CardHeader>
+                  <CardContent
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      height: "100%",
+                      p: 3,
+                      gap: 2,
+                    }}>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7, flexGrow: 1 }}>
                       {skill.description}
                     </Typography>
                     <Box
                       sx={{
-                        bgcolor: "#f5f5f5",
-                        p: 1.5,
-                        borderRadius: 1,
-                        mb: 2,
-                        fontFamily: "monospace",
+                        bgcolor: "rgba(163, 194, 238, 0.1)",
+                        p: 2,
+                        borderRadius: 2,
+                        border: "1px solid rgba(163, 194, 238, 0.3)",
                       }}>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>
                         Command:
                       </Typography>
-                      <Typography variant="body1" fontWeight={600}>
+                      <Typography
+                        variant="body1"
+                        fontWeight={600}
+                        sx={{
+                          fontFamily: "monospace",
+                          color: "#3C84F6",
+                        }}>
                         {skill.command}
                       </Typography>
                     </Box>
-                    <PriceTag>Price: {skill.price}</PriceTag>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      fullWidth
-                      sx={{ mt: 2 }}
-                      onClick={() => handlePurchase(skill.id)}>
+                    <PriceTag>
+                      <Typography variant="body1" fontWeight={700}>
+                        {skill.price}
+                      </Typography>
+                    </PriceTag>
+                    <GradientButton fullWidth size="large" onClick={() => handlePurchase(skill.id)}>
                       Purchase Now
-                    </Button>
+                    </GradientButton>
                   </CardContent>
                 </StyledCard>
               </Grid>
             ))}
           </Grid>
 
-          <Box mt={6} p={3} sx={{ bgcolor: "#f9f9f9", borderRadius: 2 }}>
-            <Typography variant="h6" gutterBottom fontWeight={600}>
+          <InfoBox mt={8}>
+            <Typography variant="h6" gutterBottom fontWeight={700} color="primary.main" mb={3}>
               💡 How to Use
             </Typography>
-            <Typography variant="body2" color="text.secondary" component="div">
-              <ol style={{ paddingLeft: 20 }}>
-                <li>Choose an AI skill you're interested in</li>
-                <li>Click "Purchase Now" and connect your TON wallet</li>
-                <li>Complete the 0.01 TON payment</li>
-                <li>Receive activation code (e.g., NEWS2026, WEATHER2026, TECH2026)</li>
+            <Typography
+              variant="body2"
+              color="text.primary"
+              component="div"
+              sx={{ lineHeight: 1.8 }}>
+              <ol style={{ paddingLeft: 24, margin: 0 }}>
+                <li style={{ marginBottom: 12 }}>Choose an AI skill you're interested in</li>
+                <li style={{ marginBottom: 12 }}>
+                  Click "Purchase Now" and connect your TON wallet
+                </li>
+                <li style={{ marginBottom: 12 }}>Complete the 0.01 TON payment</li>
+                <li style={{ marginBottom: 12 }}>
+                  Receive activation code (e.g., NEWS2026, WEATHER2026, TECH2026)
+                </li>
                 <li>Use the corresponding command in Telegram Bot to activate the skill</li>
               </ol>
             </Typography>
-          </Box>
+          </InfoBox>
 
-          <Box mt={4} textAlign="center">
-            <Typography variant="body2" color="text.secondary">
+          <Box mt={6} textAlign="center">
+            <Typography variant="body2" color="text.secondary" sx={{ opacity: 0.7 }}>
               Network: Testnet | Contract: EQAPgryA...2my7he
             </Typography>
           </Box>

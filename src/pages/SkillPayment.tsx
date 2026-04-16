@@ -16,14 +16,60 @@ import useNotification from "hooks/useNotification";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const PageWrapper = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(3),
+  padding: theme.spacing(4),
   maxWidth: 600,
   margin: "0 auto",
 }));
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(3),
+  background: "#FFFFFF",
+  borderRadius: 16,
+  boxShadow: "0px 8px 24px rgba(60, 132, 246, 0.08)",
+  border: "1px solid rgba(232, 232, 232, 0.6)",
+  overflow: "hidden",
+}));
+
+const CardHeader = styled(Box)(({ theme }) => ({
+  background: "linear-gradient(135deg, #6999E9 0%, #5E90E3 100%)",
+  padding: theme.spacing(3),
+  color: "#FFFFFF",
+}));
+
+const GradientButton = styled(Button)(({ theme }) => ({
+  background: "linear-gradient(135deg, #3C84F6 0%, #6999E9 100%)",
+  color: "#FFFFFF",
+  fontWeight: 600,
+  padding: theme.spacing(1.5, 3),
+  borderRadius: 12,
+  textTransform: "none",
+  fontSize: "16px",
+  boxShadow: "0px 4px 12px rgba(60, 132, 246, 0.25)",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    background: "linear-gradient(135deg, #6999E9 0%, #3C84F6 100%)",
+    boxShadow: "0px 6px 20px rgba(60, 132, 246, 0.35)",
+    transform: "translateY(-2px)",
+  },
+  "&:disabled": {
+    background: "#E8E8E8",
+    color: "#B2B2B2",
+  },
+}));
+
+const SuccessBox = styled(Box)(({ theme }) => ({
+  background: "linear-gradient(135deg, rgba(57, 196, 108, 0.1) 0%, rgba(57, 196, 108, 0.05) 100%)",
+  padding: theme.spacing(3),
+  borderRadius: 16,
+  border: "1px solid rgba(57, 196, 108, 0.3)",
+  textAlign: "center",
+}));
+
+const InfoBox = styled(Box)(({ theme }) => ({
+  background: "rgba(163, 194, 238, 0.08)",
   padding: theme.spacing(2),
+  borderRadius: 12,
+  border: "1px solid rgba(163, 194, 238, 0.2)",
 }));
 
 const PAYMENT_CONTRACT =
@@ -66,7 +112,6 @@ const getSkillFromUrl = (): SkillInfo | null => {
   return skills[startapp] || null;
 };
 
-// 生成激活码：根据技能 ID 返回固定格式的激活码
 const generateActivationCode = (skillId: string): string => {
   const activationCodes: Record<string, string> = {
     skill_news_001: "NEWS2026",
@@ -76,12 +121,10 @@ const generateActivationCode = (skillId: string): string => {
   return activationCodes[skillId] || "UNKNOWN2026";
 };
 
-// 复制到剪贴板
 const copyToClipboard = (text: string) => {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(text);
   } else {
-    // 降级方案
     const textarea = document.createElement("textarea");
     textarea.value = text;
     document.body.appendChild(textarea);
@@ -142,7 +185,6 @@ export const SkillPayment = () => {
 
       const result = await tonConnectUI.sendTransaction(transaction);
 
-      // 生成激活码
       const code = generateActivationCode(skill.id);
       setActivationCode(code);
 
@@ -165,7 +207,10 @@ export const SkillPayment = () => {
       }
     } catch (error) {
       console.error("Payment failed:", error);
-      showNotification(`Payment failed: ${error instanceof Error ? error.message : "Unknown error"}`, "error");
+      showNotification(
+        `Payment failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+        "error",
+      );
     } finally {
       setLoading(false);
     }
@@ -174,39 +219,60 @@ export const SkillPayment = () => {
   if (!skill) {
     return (
       <PageWrapper>
-        <Typography variant="h5" gutterBottom>
-          Loading...
-        </Typography>
+        <Box textAlign="center" mt={8}>
+          <CircularProgress size={48} sx={{ color: "#3C84F6" }} />
+          <Typography variant="h6" color="text.secondary" mt={3}>
+            Loading...
+          </Typography>
+        </Box>
       </PageWrapper>
     );
   }
 
   return (
     <PageWrapper>
-      <Typography variant="h4" gutterBottom align="center">
+      <Typography
+        variant="h4"
+        gutterBottom
+        align="center"
+        fontWeight={700}
+        sx={{
+          background: "linear-gradient(135deg, #3C84F6 0%, #6999E9 100%)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          mb: 4,
+        }}>
         Skill Payment
       </Typography>
 
       <StyledCard>
-        <CardContent>
-          <Typography variant="h6" gutterBottom>
+        <CardHeader>
+          <Typography variant="h5" fontWeight={700}>
             {skill.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        </CardHeader>
+        <CardContent sx={{ p: 3 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3, lineHeight: 1.7 }}>
             {skill.description}
           </Typography>
-          <Typography variant="body1" color="primary">
-            Price: {PAYMENT_AMOUNT} TON
-          </Typography>
+          <InfoBox>
+            <Typography variant="h6" color="primary.main" fontWeight={700}>
+              {PAYMENT_AMOUNT} TON
+            </Typography>
+          </InfoBox>
         </CardContent>
       </StyledCard>
 
       <StyledCard>
-        <CardContent>
-          <Typography variant="subtitle2" gutterBottom>
+        <CardContent sx={{ p: 3 }}>
+          <Typography variant="subtitle2" gutterBottom fontWeight={600} color="text.primary">
             Payment Information
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mb: 1, fontFamily: "monospace" }}>
             Contract: {PAYMENT_CONTRACT.slice(0, 8)}...{PAYMENT_CONTRACT.slice(-6)}
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -217,42 +283,52 @@ export const SkillPayment = () => {
 
       {!userAddress ? (
         <Box textAlign="center" mt={3}>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
             Please connect your TON wallet
           </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            onClick={() => tonConnectUI.openModal()}>
+          <GradientButton size="large" fullWidth onClick={() => tonConnectUI.openModal()}>
             Connect Wallet
-          </Button>
+          </GradientButton>
         </Box>
       ) : paymentSuccess ? (
-        <Box textAlign="center" mt={3}>
-          <Typography variant="h6" color="success.main" gutterBottom>
+        <SuccessBox mt={3}>
+          <Typography variant="h5" sx={{ color: "#39C46C", mb: 2, fontWeight: 700 }}>
             ✅ Payment Successful!
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
             You have successfully unlocked: {skill.name}
           </Typography>
 
-          <Box mt={3} mb={2}>
-            <Typography variant="subtitle2" gutterBottom>
+          <Box
+            sx={{
+              background: "#FFFFFF",
+              p: 3,
+              borderRadius: 2,
+              border: "1px solid rgba(163, 194, 238, 0.3)",
+            }}>
+            <Typography variant="subtitle2" gutterBottom fontWeight={600} color="text.primary">
               Activation Code (Backup)
             </Typography>
-            <Box display="flex" alignItems="center" gap={1}>
+            <Box display="flex" alignItems="center" gap={1} mt={2}>
               <TextField
                 fullWidth
                 value={activationCode}
                 InputProps={{
                   readOnly: true,
-                  style: { fontFamily: "monospace", fontSize: "0.9rem" },
+                  style: {
+                    fontFamily: "monospace",
+                    fontSize: "1rem",
+                    fontWeight: 600,
+                    color: "#3C84F6",
+                  },
                 }}
                 size="small"
               />
               <IconButton
-                color="primary"
+                sx={{
+                  color: "#3C84F6",
+                  "&:hover": { background: "rgba(60, 132, 246, 0.08)" },
+                }}
                 onClick={() => {
                   copyToClipboard(activationCode);
                   showNotification("Activation code copied", "success");
@@ -260,29 +336,33 @@ export const SkillPayment = () => {
                 <ContentCopyIcon />
               </IconButton>
             </Box>
-            <Typography variant="caption" color="text.secondary" display="block" mt={1}>
+            <Typography variant="caption" color="text.secondary" display="block" mt={2}>
               If the Bot doesn't auto-activate, enter this code in the chat
             </Typography>
           </Box>
 
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" mt={3}>
             Returning to Bot...
           </Typography>
-        </Box>
+        </SuccessBox>
       ) : (
-        <Box textAlign="center" mt={3}>
-          <Button
-            variant="contained"
-            color="primary"
+        <Box mt={3}>
+          <GradientButton
             size="large"
             fullWidth
             onClick={handlePayment}
             disabled={loading}
-            startIcon={loading ? <CircularProgress size={20} /> : null}>
+            startIcon={loading ? <CircularProgress size={20} sx={{ color: "#FFFFFF" }} /> : null}>
             {loading ? "Processing..." : `Pay ${PAYMENT_AMOUNT} TON`}
-          </Button>
+          </GradientButton>
 
-          <Typography variant="caption" color="text.secondary" display="block" mt={2}>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            display="block"
+            textAlign="center"
+            mt={2}
+            sx={{ fontFamily: "monospace" }}>
             Wallet: {userAddress.slice(0, 8)}...{userAddress.slice(-6)}
           </Typography>
         </Box>
