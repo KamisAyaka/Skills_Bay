@@ -3,11 +3,7 @@ import React, { useEffect, useRef } from "react";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import { HeaderMenu, MobileMenu } from "components/header/headerMenu/HeaderMenu";
 import { AppLogo } from "components/appLogo";
-import {
-  HeaderContent,
-  HeaderOptionalContent,
-  HeaderWrapper,
-} from "./styled";
+import { HeaderContent, HeaderOptionalContent, HeaderWrapper } from "./styled";
 import { Outlet, useLocation } from "react-router-dom";
 
 export const Header = () => {
@@ -28,7 +24,7 @@ export const Header = () => {
           <HeaderOptionalContent>
             {!matches && (
               <IconButton onClick={() => setMobileMenu(true)}>
-                <MenuRoundedIcon style={{ width: 40, height: 40, color: "#50A7EA" }} />
+                <MenuRoundedIcon style={{ width: 40, height: 40, color: "#3C84F6" }} />
               </IconButton>
             )}
             {matches && <AppLogo />}

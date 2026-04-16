@@ -26,7 +26,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const CardHeader = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, #6999E9 0%, #5E90E3 100%)",
+  background: "linear-gradient(135deg, #A3C2EE 0%, #5E90E3 100%)",
   padding: theme.spacing(3),
   borderRadius: "16px 16px 0 0",
   color: "#FFFFFF",
@@ -129,7 +129,7 @@ export const SkillMarketplace = () => {
               gutterBottom
               fontWeight={700}
               sx={{
-                background: "linear-gradient(135deg, #3C84F6 0%, #6999E9 100%)",
+                background: "linear-gradient(90deg, #B565D8 0%, #E91E8C 50%, #E91E8C 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -139,12 +139,12 @@ export const SkillMarketplace = () => {
             </Typography>
             <Typography
               variant="h6"
-              color="text.secondary"
               sx={{
+                color: "#FF6BB5",
                 maxWidth: 800,
                 mx: "auto",
                 lineHeight: 1.8,
-                fontWeight: 400,
+                fontWeight: 500,
               }}>
               Discover, purchase and use AI skills in Telegram
               <br />

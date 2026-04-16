@@ -31,7 +31,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const CardHeader = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, #6999E9 0%, #5E90E3 100%)",
+  background: "linear-gradient(135deg, #A3C2EE 0%, #5E90E3 100%)",
   padding: theme.spacing(3),
   color: "#FFFFFF",
 }));

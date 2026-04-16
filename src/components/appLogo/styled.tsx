@@ -2,16 +2,17 @@ import { Box, styled } from "@mui/material";
 
 const LogoWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
-  color: "#000",
+  color: "#5C5265",
   alignItems: "center",
-  gap: 4,
+  gap: 8,
   "&:hover": {
     cursor: "pointer",
   },
   "& h4": {
     fontSize: 20,
     lineHeight: "20px",
-    fontWeight: 800,
+    fontWeight: 700,
+    color: "#5C5265",
   },
   [theme.breakpoints.down("sm")]: {
     "& img": {

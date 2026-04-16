@@ -6,13 +6,8 @@ body {
     "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(
-    135deg,
-    rgba(161, 222, 254, 0.15) 0%,
-    rgba(255, 255, 255, 1) 25%,
-    rgba(255, 255, 255, 1) 75%,
-    rgba(234, 214, 255, 0.15) 100%
-  );
+  background: radial-gradient(circle at 10% 90%, rgba(161, 222, 254, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 90% 10%, rgba(234, 214, 255, 0.2) 0%, transparent 50%), #ffffff;
   background-attachment: fixed;
   height: 100vh;
 }
