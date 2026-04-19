@@ -16,9 +16,12 @@ import useNotification from "hooks/useNotification";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const PageWrapper = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(4),
+  padding: theme.spacing(5, 4),
   maxWidth: 600,
   margin: "0 auto",
+  [theme.breakpoints.down("sm")]: {
+    padding: theme.spacing(4, 2),
+  },
 }));
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -31,25 +34,25 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const CardHeader = styled(Box)(({ theme }) => ({
-  background: "linear-gradient(135deg, #D4A5F5 0%, #F78DC7 100%)",
+  background: "linear-gradient(135deg, #A3C2EE 0%, #6999E9 60%, #5E90E3 100%)",
   padding: theme.spacing(3),
   color: "#FFFFFF",
 }));
 
-const GradientButton = styled(Button)(({ theme }) => ({
-  background: "linear-gradient(135deg, #D4A5F5 0%, #F78DC7 100%)",
+const PrimaryButton = styled(Button)(({ theme }) => ({
+  background: "linear-gradient(135deg, #3C84F6 0%, #2B71E4 55%, #1F5FD6 100%)",
   color: "#FFFFFF",
-  fontWeight: 600,
+  fontWeight: 700,
   padding: theme.spacing(1.5, 3),
   borderRadius: 12,
   textTransform: "none",
   fontSize: "16px",
-  boxShadow: "0px 4px 12px rgba(247, 141, 199, 0.25)",
-  transition: "all 0.3s ease",
+  boxShadow: "0px 8px 20px rgba(60, 132, 246, 0.24)",
+  transition: "transform 220ms ease-out, box-shadow 220ms ease-out, background-color 220ms ease-out",
   "&:hover": {
-    background: "linear-gradient(135deg, #F78DC7 0%, #D4A5F5 100%)",
-    boxShadow: "0px 6px 20px rgba(247, 141, 199, 0.35)",
-    transform: "translateY(-2px)",
+    background: "linear-gradient(135deg, #2B71E4 0%, #1F5FD6 100%)",
+    boxShadow: "0px 10px 24px rgba(60, 132, 246, 0.28)",
+    transform: "translateY(-1px)",
   },
   "&:disabled": {
     background: "#E8E8E8",
@@ -66,10 +69,10 @@ const SuccessBox = styled(Box)(({ theme }) => ({
 }));
 
 const InfoBox = styled(Box)(({ theme }) => ({
-  background: "rgba(163, 194, 238, 0.08)",
+  background: "rgba(163, 194, 238, 0.12)",
   padding: theme.spacing(2),
   borderRadius: 12,
-  border: "1px solid rgba(163, 194, 238, 0.2)",
+  border: "1px solid rgba(163, 194, 238, 0.35)",
 }));
 
 const PAYMENT_CONTRACT =
@@ -107,6 +110,30 @@ const getSkillFromUrl = (): SkillInfo | null => {
       description:
         "Scans GitHub Trending, Hacker News, and blogs from top tech companies (like OpenAI, Google) to summarize the 10 hottest tech topics. Emphasizes professional depth for developers and geeks.",
     },
+    skill_summary_004: {
+      id: "skill_summary_004",
+      name: "Long Document Summarizer",
+      description:
+        "Summarizes long articles, docs, and reports into key bullet points with action items. Useful for meeting notes, research papers, and PRD reviews.",
+    },
+    skill_translate_005: {
+      id: "skill_translate_005",
+      name: "Smart Translator Pro",
+      description:
+        "Provides context-aware translation across major languages and preserves tone for work messages. Ideal for bilingual communication and global collaboration.",
+    },
+    skill_reminder_006: {
+      id: "skill_reminder_006",
+      name: "Reminder & To-Do Copilot",
+      description:
+        "Creates reminders and lightweight task lists directly in chat, including recurring schedules. Great for daily planning and team follow-ups in Telegram.",
+    },
+    skill_crypto_007: {
+      id: "skill_crypto_007",
+      name: "Crypto Market Pulse",
+      description:
+        "Delivers real-time crypto prices, 24h movement, and quick trend snapshots. Helps users check market conditions fast without leaving Telegram.",
+    },
   };
 
   return skills[startapp] || null;
@@ -117,6 +144,10 @@ const generateActivationCode = (skillId: string): string => {
     skill_news_001: "NEWS2026",
     skill_weather_002: "WEATHER2026",
     skill_tech_003: "TECH2026",
+    skill_summary_004: "SUMMARY2026",
+    skill_translate_005: "TRANSLATE2026",
+    skill_reminder_006: "REMIND2026",
+    skill_crypto_007: "CRYPTO2026",
   };
   return activationCodes[skillId] || "UNKNOWN2026";
 };
@@ -231,19 +262,8 @@ export const SkillPayment = () => {
 
   return (
     <PageWrapper>
-      <Typography
-        variant="h4"
-        gutterBottom
-        align="center"
-        fontWeight={700}
-        sx={{
-          background: "linear-gradient(90deg, #D4A5F5 0%, #F78DC7 50%, #F78DC7 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          mb: 4,
-        }}>
-        Skill Payment
+      <Typography variant="h4" gutterBottom align="center" fontWeight={700} sx={{ mb: 4 }}>
+        Skill <Box component="span" sx={{ color: "#3C84F6" }}>Payment</Box>
       </Typography>
 
       <StyledCard>
@@ -286,14 +306,14 @@ export const SkillPayment = () => {
           <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
             Please connect your TON wallet
           </Typography>
-          <GradientButton size="large" fullWidth onClick={() => tonConnectUI.openModal()}>
+          <PrimaryButton size="large" fullWidth onClick={() => tonConnectUI.openModal()}>
             Connect Wallet
-          </GradientButton>
+          </PrimaryButton>
         </Box>
       ) : paymentSuccess ? (
         <SuccessBox mt={3}>
           <Typography variant="h5" sx={{ color: "#39C46C", mb: 2, fontWeight: 700 }}>
-            ✅ Payment Successful!
+            Payment Successful!
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
             You have successfully unlocked: {skill.name}
@@ -347,14 +367,14 @@ export const SkillPayment = () => {
         </SuccessBox>
       ) : (
         <Box mt={3}>
-          <GradientButton
+          <PrimaryButton
             size="large"
             fullWidth
             onClick={handlePayment}
             disabled={loading}
             startIcon={loading ? <CircularProgress size={20} sx={{ color: "#FFFFFF" }} /> : null}>
             {loading ? "Processing..." : `Pay ${PAYMENT_AMOUNT} TON`}
-          </GradientButton>
+          </PrimaryButton>
 
           <Typography
             variant="caption"

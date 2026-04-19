@@ -1,46 +1,49 @@
 import { AppBar, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { APP_GRID } from "consts";
 
 const HeaderWrapper = styled(AppBar)(({ theme }) => ({
-  height: 200,
-  background: "white",
-  border: "0.5px solid rgba(114, 138, 150, 0.24)",
-  boxShadow: "0px 2px 16px rgba(114, 138, 150, 0.08)",
-  borderRadius: "0px 0px 48px 48px",
+  height: 72,
+  background: "rgba(255, 255, 255, 0.88)",
+  backdropFilter: "saturate(180%) blur(16px)",
+  borderBottom: "1px solid rgba(114, 138, 150, 0.2)",
+  boxShadow: "none",
+  borderRadius: 0,
+  justifyContent: "center",
   [theme.breakpoints.down("md")]: {
-    paddingTop: 10,
-    height: 80,
+    paddingTop: 0,
+    height: 64,
   },
   [theme.breakpoints.down("sm")]: {
-    display: "none",
+    height: 58,
   },
 }));
 
 const HeaderContent = styled(Box)(({ theme }) => ({
-  maxWidth: APP_GRID,
+  maxWidth: 1200,
   width: "100%",
   margin: "0 auto",
-  height: 100,
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
   [theme.breakpoints.down("lg")]: {
-    width: "calc(100% - 50px)",
+    width: "calc(100% - 40px)",
   },
-  [theme.breakpoints.down("md")]: {
-    display: "flex",
-    alignItems: "center",
+  [theme.breakpoints.down("sm")]: {
+    width: "calc(100% - 20px)",
   },
 }));
 
 const HeaderOptionalContent = styled(Box)(({ theme }) => ({
-  flex: 0,
+  flex: 1,
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
   height: "100%",
   [theme.breakpoints.down("md")]: {
-    justifyContent: "flex-start",
-    height: "initial",
+    justifyContent: "space-between",
+    height: "100%",
+    gap: theme.spacing(1),
   },
 }));
 

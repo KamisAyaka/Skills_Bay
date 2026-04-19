@@ -25,7 +25,7 @@ const CredentialsWrapper = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   marginTop: theme.spacing(3),
   marginBottom: theme.spacing(2),
-  color: "#728A96",
+  color: "#5C5265",
   fontSize: 14,
   [theme.breakpoints.down("md")]: {
     "& > *": {

@@ -28,13 +28,15 @@ const FooterBox = styled(Box)(() => ({
 
 const ScreensWrapper = styled(Box)({
   "*::-webkit-scrollbar": {
-    display: "none",
+    width: 8,
+    height: 8,
   },
   "*::-webkit-scrollbar-track": {
-    display: "none",
+    background: "transparent",
   },
   "*::-webkit-scrollbar-thumb": {
-    display: "none",
+    backgroundColor: "rgba(60, 132, 246, 0.24)",
+    borderRadius: 999,
   },
 });
 

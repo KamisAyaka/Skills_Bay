@@ -23,11 +23,11 @@ export const Header = () => {
         <HeaderContent>
           <HeaderOptionalContent>
             {!matches && (
-              <IconButton onClick={() => setMobileMenu(true)}>
+              <IconButton aria-label="Open menu" onClick={() => setMobileMenu(true)}>
                 <MenuRoundedIcon style={{ width: 40, height: 40, color: "#3C84F6" }} />
               </IconButton>
             )}
-            {matches && <AppLogo />}
+            <AppLogo />
             {matches && <HeaderMenu />}
           </HeaderOptionalContent>
           <MobileMenu showMenu={mobileMenu && !matches} closeMenu={() => setMobileMenu(false)} />

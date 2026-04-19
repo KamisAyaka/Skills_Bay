@@ -26,8 +26,9 @@ const StyledGithubIcon = styled("img")({
 const AppMenu = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: 11,
-  height: 35,
+  gap: 12,
+  minHeight: 40,
+  marginLeft: "auto",
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     width: "calc(100vw - 60px)",
@@ -39,7 +40,7 @@ const AppMenu = styled(Box)(({ theme }) => ({
       order: 1,
       width: "100%",
       maxWidth: "unset",
-      height: 35,
+      minHeight: 44,
       marginTop: 40,
       "& p": {
         maxWidth: "unset",
